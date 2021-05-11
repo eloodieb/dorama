@@ -4,6 +4,7 @@ namespace Entity;
 
 use Entity\User;
 use Entity\Genre;
+use ludk\Utils\Serializer;
 
 class Drama
 {
@@ -20,4 +21,6 @@ class Drama
     public $create_at;
     public User $userId;
     public Genre $genreId;
+
+    use Serializer;
 }

@@ -1,0 +1,46 @@
+[{
+    "id" : 1,
+    "title" : "Hana Kimi",
+    "shortDescription" :"Ashiya Mizuki, une jeune fille de 16 ans décide de se travestir et d'intégrer un internat pour garçon afin de faire reprendre le saut en hauteur à Sano Izumi",
+    "longDescription" : "Ashiya Mizuki est une jeune fille de 16 ans d'origine japonaise installée avec sa famille en Californie aux États-Unis. À cause d'elle, Sano Izumi, un jeune champion de saut en hauteur japonais se blesse et arrête le saut Se sentant alors responsable Ashiya décide d'intégrer le même lycée que lui pour l'encourager à reprendre le saut en hauteur. Mais l'établissement se révèle être en fait un internat pour garçon, elle décide donc de se travestir en garçon. C'est sous ce déguisement qu'elle intègre l'école et qu'elle s'installe, par une étrange coïncidence, dans la même chambre que Sano Izumi. Malgré le mauvais caractère du jeune homme, elle en tombe amoureuse et est bien décidée à lui faire reprendre le saut en hauteur.",
+    "url_img1" :"http://www.anime-ultime.net/images/img20701.jpg",
+    "url_img2" :"http://www.anime-ultime.net/images/img20701.jpg",
+    "url_trailer": "http://www.anime-ultime.net/images/img20701.jpg",
+    "nbVote" : 12,
+    "country" : "Japon",
+    "yearRelease" : 2006,
+    "create_at" : "2021-05-11",
+    "userId" : 1,
+    "genreId" : 1
+},
+{
+    "id" : 2,
+    "title" : "Hana Yori Dango",
+    "shortDescription" :"Makino Tsukushi, issue d'un milieu modeste, intègre le milieu des étudiants riches à la prestigieuse école Eitoku Gakuen. Peu de temps, Makino découvre que l'école est dirigée par le F4, composé des playboys.",
+    "longDescription" : "Makino Tsukushi, issue d'un milieu modeste, intègre le milieu des étudiants riches à la prestigieuse école Eitoku Gakuen. Initialement, elle voulait y entrer parce que son idole, une mannequin de renommée internationale nommée Todô Shizuka, était une ancienne élève de l'école. Peu de temps après cependant, Makino découvre le caractère superficiel de ses camarades de classe. Leur arrogance et son incapacité à s'identifier à eux à cause de son statut social limitent ses chances de se faire des amis. Pire encore, l'école est dirigée par le F4 ou Quatre Fleurs, composé des playboys Nishikado Sôjiro et Mimasaka Akira, de l'introverti Hanazawa Rui, et du violent leader du F4 Domyôji Tsukasa. Le F4, formé des fils de magnats riches et les plus puissants du Japon, intimide les autres étudiants jusqu'à ce qu'ils soient expulsés ou cessent les cours.",
+    "url_img1" :"https://www.stellarsisters.com/wp-content/uploads/2012/07/hana-yori-dango-final-img-une.jpg",
+    "url_img2" :"https://www.stellarsisters.com/wp-content/uploads/2012/07/hana-yori-dango-final-img-une.jpg",
+    "url_trailer": "https://www.stellarsisters.com/wp-content/uploads/2012/07/hana-yori-dango-final-img-une.jpg",
+    "nbVote" : 14,
+    "country" : "Japon",
+    "yearRelease" : 2005,
+    "create_at" : "2021-05-11",
+    "userId" : 2,
+    "genreId" : 1
+},
+{
+    "id" : 3,
+    "title" : "Demon Catchers",
+    "shortDescription" :"Un groupe de quatre chasseurs de démons appelés les Compteurs porte la tâche ardue de rechercher et de bannir les mauvais esprits qui s'échappent de l'au- delà pour gagner l'immortalité.",
+    "longDescription" : "Dans la ville fictive de Jungjin, un groupe de quatre chasseurs de démons appelés les Compteurs porte la tâche ardue de rechercher et de bannir les mauvais esprits qui s'échappent de l'au- delà pour gagner l'immortalité. Ces esprits maléfiques possèdent des hôtes humains locaux qui ont commis un meurtre ou ont un fort désir d'assassiner, encouragent le désir de leur hôte de tuer et consomment l'esprit de la victime.",
+    "url_img1" :"https://freakingeek.com/wp-content/uploads/2021/01/DemonCatchers-Banniere.jpg",
+    "url_img2" :"https://freakingeek.com/wp-content/uploads/2021/01/DemonCatchers-Banniere.jpg",
+    "url_trailer": "https://freakingeek.com/wp-content/uploads/2021/01/DemonCatchers-Banniere.jpg",
+    "nbVote" : 9,
+    "country" : "Corée",
+    "yearRelease" : 2021,
+    "create_at" : "2021-05-11",
+    "userId" : 3,
+    "genreId" : 3
+}
+]

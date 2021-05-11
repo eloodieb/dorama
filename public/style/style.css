@@ -86,3 +86,8 @@ span {
   font-weight: 500px;
   color: #979da2;
 }
+
+.card-img,
+.card-img-top {
+  width: 300px;
+}
