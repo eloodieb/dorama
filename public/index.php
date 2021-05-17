@@ -5,12 +5,14 @@ use Entity\Drama;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+session_start();
+
 $orm = new ORM(__DIR__ . '/../Resources');
 $dramaRepo = $orm->getRepository(Drama::class);
 $items = array();
 
 if (isset($_GET['search'])) {
-  $items = $dramaRepo->findBy(array("content" => '%' . $_GET['search'] . '%'));
+  $items = $dramaRepo->findBy(array("shortDescription" => '%' . $_GET['search'] . '%'));
 } else {
   $items = $dramaRepo->findAll();
 }
@@ -89,8 +91,8 @@ if (isset($_GET['search'])) {
           </li>
         </ul>
 
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
+        <form class="d-flex" action="/">
+          <input class="form-control me-2" type="text" placeholder="Rechercher" aria-label="Search" name="search">
           <button class="btn btn-light" type="submit"><i class="fas fa-search"></i></button>
         </form>
         <ul class="navbar-nav mb-2 mb-lg-0">
@@ -145,12 +147,12 @@ if (isset($_GET['search'])) {
       ?>
         <div class="col-md-3">
           <div class="card h-100 shadow-sm">
-            <img src="<?= $oneItem->url_img1 ?>" class="card-img-top" alt="...">
+            <img src="<?= htmlentities($oneItem->url_img1) ?>" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title"><?= $oneItem->title ?><span class="badge bg-secondary mx-2"><?= $oneItem->country ?></span></h5>
-              <p class="card-text"><?= $oneItem->shortDescription ?></p>
+              <h5 class="card-title"><?= htmlentities($oneItem->title) ?><span class="badge bg-secondary mx-2"><?= htmlentities($oneItem->country)  ?></span></h5>
+              <p class="card-text"><?= htmlentities($oneItem->shortDescription) ?></p>
               <div class="d-flex justify-content-between align-items-center">
-                <span class="badge bg-secondary h-100"><?= $oneItem->genreId->name ?></span><a href="#" class="btn btn-primary px-4">Voir</a>
+                <span class="badge bg-secondary h-100"><?= htmlentities($oneItem->genreId->name) ?></span><a href="#" class="btn btn-primary px-4">Voir</a>
               </div>
             </div>
           </div>
