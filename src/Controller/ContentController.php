@@ -3,55 +3,61 @@
 namespace Controller;
 
 use Entity\Drama;
+use Entity\Genre;
+use ludk\Http\Request;
+use ludk\Http\Response;
+use ludk\Controller\AbstractController;
 
-class ContentController
+class ContentController extends AbstractController
 {
-    public function create()
+    public function create(Request $request): Response
     {
-        global $genreRepo;
-        global $dramaRepo;
-        global $manager;
+        $genreRepo = $this->getOrm()->getRepository(Genre::class);
+        $dramaRepo = $this->getOrm()->getRepository(Drama::class);
+        $manager = $this->getOrm()->getManager();
 
         $genres = $genreRepo->findAll();
         if (
-            isset($_SESSION['user'])
-            && isset($_POST['title'])
-            && isset($_POST['shortDescription'])
-            && isset($_POST['longDescription'])
-            && isset($_POST['url_img1'])
-            && isset($_POST['url_img2'])
-            && isset($_POST['url_trailer'])
-            && isset($_POST['country'])
-            && isset($_POST['yearRelease'])
-            && isset($_POST['genreId'])
+            $request->getSession()->has('user')
+            && $request->request->has('title')
+            && $request->request->has('shortDescription')
+            && $request->request->has('longDescription')
+            && $request->request->has('url_img1')
+            && $request->request->has('url_img2')
+            && $request->request->has('url_trailer')
+            && $request->request->has('country')
+            && $request->request->has('yearRelease')
+            && $request->request->has('genreId')
         ) {
             $errorMsg = NULL;
-            $dramaWithThisTitle = $dramaRepo->findBy(['title' => $_POST['title']]);
-            if ($dramaWithThisTitle == $_POST['title']) {
+            $dramaWithThisTitle = $dramaRepo->findBy(['title' => $request->request->get('title')]);
+            if ($dramaWithThisTitle == $request->request->get('title')) {
                 $errorMsg = "Drama already exists.";
             }
             if ($errorMsg) {
-                include "../templates/newDrama.php";
+                $data = array('errorMsg' => $errorMsg, 'genres' => $genres);
+                return $this->render('newDrama.php', $data);
             } else {
-                $genre = $genreRepo->find($_POST['genreId']);
+                $genre = $genreRepo->find($request->request->get('genreId'));
                 $newDrama = new Drama;
-                $newDrama->title = trim($_POST['title']); //trim permet d'enlever les espaces inutiles au début et à la fin
-                $newDrama->shortDescription = trim($_POST['shortDescription']);
-                $newDrama->longDescription = trim($_POST['longDescription']);
-                $newDrama->url_img1 = trim($_POST['url_img1']);
-                $newDrama->url_img2 = trim($_POST['url_img2']);
-                $newDrama->url_trailer = trim($_POST['url_trailer']);
-                $newDrama->country = $_POST['country'];
-                $newDrama->yearRelease = $_POST['yearRelease'];
+                $newDrama->title = trim($request->request->get('title')); //trim permet d'enlever les espaces inutiles au début et à la fin
+                $newDrama->shortDescription = trim($request->request->get('shortDescription'));
+                $newDrama->longDescription = trim($request->request->get('longDescription'));
+                $newDrama->url_img1 = trim($request->request->get('url_img1'));
+                $newDrama->url_img2 = trim($request->request->get('url_img2'));
+                $newDrama->url_trailer = trim($request->request->get('url_trailer'));
+                $newDrama->country = $request->request->get('country');
+                $newDrama->yearRelease = $request->request->get('yearRelease');
                 $newDrama->create_at = date('d-m-Y');
                 $newDrama->genreId = $genre;
-                $newDrama->userId = $_SESSION['user'];
+                $newDrama->userId = $request->getSession()->get('user');
                 $manager->persist($newDrama);
                 $manager->flush();
-                header('Location:/display');
+                return $this->redirectToRoute('display');
             }
         } else {
-            include "../templates/newDrama.php";
+            $data = array('genres' => $genres);
+            return $this->render('newDrama.php', $data);
         }
     }
 }

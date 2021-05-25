@@ -1,6 +1,5 @@
-<?php
-include __DIR__ . '/inc/header.php';
-?>
+{% include 'inc/header.php' %}
+
 <header class="drama-header">
     <div class="container">
         <h1 class="text-left pt-4 text-light">Découvrez notre drama<br>à la une !</h1>

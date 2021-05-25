@@ -2,18 +2,24 @@
 
 namespace Controller;
 
-class HomeController
+use Entity\Drama;
+use ludk\Http\Request;
+use ludk\Http\Response;
+use ludk\Controller\AbstractController;
+
+class HomeController extends AbstractController
 {
-    public function dislpay()
+    public function display(Request $request): Response
     {
-        global $dramaRepo;
+        $dramaRepo = $this->getOrm()->getRepository(Drama::class);;
         $items = array();
 
-        if (isset($_GET['search'])) {
-            $items = $dramaRepo->findBy(array("shortDescription" => '%' . $_GET['search'] . '%'));
+        if ($request->query->has('search')) {
+            $items = $dramaRepo->findBy(array("shortDescription" => '%' . $request->query->get('search') . '%'));
         } else {
             $items = $dramaRepo->findAll();
         }
-        include '../templates/display.php';
+        $data = array('items' => $items);
+        return $this->render('display.php', $data);
     }
 }

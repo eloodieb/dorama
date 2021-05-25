@@ -3,71 +3,76 @@
 namespace Controller;
 
 use Entity\User;
+use ludk\Http\Request;
+use ludk\Http\Response;
+use ludk\Controller\AbstractController;
 
-class AuthController
+class AuthController extends AbstractController
 {
-    public function login()
+    public function login(Request $request): Response
     {
-        global $userRepo;
-        global $errorMsg;
-        if (isset($_POST['pseudo']) && isset($_POST['password'])) {
+        $userRepo = $this->getOrm()->getRepository(User::class);
+        $errorMsg = Null;
+        if ($request->request->has('pseudo') && $request->request->has('password')) {
             $criteriaWithLoginAndPassword = [
-                "pseudo" => $_POST['pseudo'],
-                "password" => $_POST['password'],
+                "pseudo" => $request->request->get('pseudo'),
+                "password" => $request->request->get('password'),
             ];
             $userWithPseudoAndPassword = $userRepo->findBy($criteriaWithLoginAndPassword);
             if (count($userWithPseudoAndPassword) == 1) {
-                $_SESSION['user'] = $userWithPseudoAndPassword[0];
-                header('Location:/display');
+                $request->getSession()->set('user', $userWithPseudoAndPassword[0]);
+                return $this->redirectToRoute('display');
             } else {
-                $errorMsg = "Wrong login and/or password.";
-                include "../templates/loginForm.php";
+                $data = array(
+                    "errorMsg" => "Wrong login and/or password."
+                );
+                return $this->render('loginForm.php', $data);
             }
         } else {
-            include "../templates/loginForm.php";
+            return $this->render('loginForm.php');
         }
     }
 
-    public function logout()
+    public function logout(Request $request): Response
     {
-        if (isset($_SESSION['user'])) {
-            unset($_SESSION['user']);
+
+        if ($request->getSession()->has('user')) {
+            $request->getSession()->remove('user');
         }
-        header('Location:/display');
+        return $this->redirectToRoute('display');
     }
 
-    public function register()
+    public function register(Request $request): Response
     {
-        global $userRepo;
-        global $manager;
-        global $errorMsg;
-        global $orm;
+        $userRepo = $this->getOrm()->getRepository(User::class);
+        $manager = $this->getOrm()->getManager();
+        $erroMsg = Null;
 
-        if (isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['passwordRetype'])) {
-            $usersWithThisPseudo = $userRepo->findBy(['pseudo' => $_POST['pseudo']]);
+        if ($request->request->has('pseudo') && $request->request->has('password') && $request->request->has('passwordRetype')) {
+            $usersWithThisPseudo = $userRepo->findBy(['pseudo' => $request->request->get('pseudo')]);
             if (count($usersWithThisPseudo) > 0) {
                 $errorMsg = "Pseudo already used.";
-            } else if ($_POST['password'] != $_POST['passwordRetype']) {
+            } else if ($request->request->get('password') != $request->request->get('passwordRetype')) {
                 $errorMsg = "Passwords are not the same.";
-            } else if (strlen(trim($_POST['password'])) < 8) {
+            } else if (strlen(trim($request->request->get('password'))) < 8) {
                 $errorMsg = "Your password should have at least 8 characters.";
-            } else if (strlen(trim($_POST['pseudo'])) < 4) {
+            } else if (strlen(trim($request->request->get('pseudo'))) < 4) {
                 $errorMsg = "Your pseudo should have at least 4 characters.";
             }
             if ($errorMsg) {
-                include "../templates/registerForm.php";
+                return $this->render('registerForm.php');
             } else {
                 $newUser = new User;
-                $newUser->pseudo = $_POST['pseudo'];
-                $newUser->password = $_POST['password'];
-                $manager = $orm->getManager();
+                $newUser->pseudo = $request->request->get('pseudo');
+                $newUser->password = $request->request->get('password');
+                // $manager = $orm->getManager();
                 $manager->persist($newUser);
                 $manager->flush();
-                $_SESSION['user'] = $newUser;
-                header('Location:/display');
+                $request->getSession()->set('user', $newUser);
+                return $this->redirectToRoute('display');
             }
         } else {
-            include "../templates/registerForm.php";
+            return $this->render('registerForm.php');
         }
     }
 }
