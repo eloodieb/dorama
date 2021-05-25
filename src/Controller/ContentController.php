@@ -48,7 +48,7 @@ class ContentController
                 $newDrama->userId = $_SESSION['user'];
                 $manager->persist($newDrama);
                 $manager->flush();
-                header('Location: ?action=display');
+                header('Location:/display');
             }
         } else {
             include "../templates/newDrama.php";

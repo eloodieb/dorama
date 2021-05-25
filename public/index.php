@@ -20,7 +20,8 @@ $dramaRepo = $orm->getRepository(Drama::class);
 $userRepo = $orm->getRepository(User::class);
 $genreRepo = $orm->getRepository(Genre::class);
 
-$action = $_GET["action"] ?? "display";
+$action = substr(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 1);
+
 switch ($action) {
   case 'register':
     $controller = new AuthController();

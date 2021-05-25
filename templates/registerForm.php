@@ -30,7 +30,7 @@
         <div class="row">
             <h1 class="display-4">Dorama</h1>
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <form class="form-signin" method="POST" action="?action=register">
+                <form class="form-signin" method="POST" action="/register">
                     <h2 class="form-signin-heading text-center">Inscription</h2>
                     <?php
                     if (isset($errorMsg)) {

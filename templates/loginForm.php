@@ -5,7 +5,7 @@ include __DIR__ . '/inc/header.php';
 <div class="container">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <form class="form-signin" method="POST" action="?action=login">
+            <form class="form-signin" method="POST" action="/login">
                 <h2 class="form-signin-heading text-center my-4">Heureux de vous revoir</h2>
                 <?php
                 if (isset($errorMsg)) {

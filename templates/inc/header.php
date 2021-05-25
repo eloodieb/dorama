@@ -70,19 +70,19 @@
                     if (isset($_SESSION['user'])) {
                     ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="?action=newDrama" role="button">Ajouter un drama</a>
+                            <a class="nav-link" href="/newDrama" role="button">Ajouter un drama</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?action=logout" role="button">Déconnexion</a>
+                            <a class="nav-link" href="/logout" role="button">Déconnexion</a>
                         </li>
                     <?php
                     } else {
                     ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="?action=login">Connexion</a>
+                            <a class="nav-link" href="/login">Connexion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?action=register">Créer un compte</a>
+                            <a class="nav-link" href="/register">Créer un compte</a>
                         </li>
                     <?php
                     }
