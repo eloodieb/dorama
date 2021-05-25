@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Controller\\AuthController' => $baseDir . '/src/Controller/AuthController.php',
+    'Controller\\ContentController' => $baseDir . '/src/Controller/ContentController.php',
+    'Controller\\HomeController' => $baseDir . '/src/Controller/HomeController.php',
     'Entity\\Drama' => $baseDir . '/src/Entity/Drama.php',
     'Entity\\Genre' => $baseDir . '/src/Entity/Genre.php',
     'Entity\\User' => $baseDir . '/src/Entity/User.php',
